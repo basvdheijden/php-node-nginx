@@ -1,4 +1,4 @@
-FROM basvdheijden/php-node:latest
+FROM basvdheijden/php-node:8.1
 
 ENV NGINX_VERSION 1.18.0
 ENV NJS_VERSION   0.4.4
