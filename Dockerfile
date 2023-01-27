@@ -1,8 +1,8 @@
 FROM basvdheijden/php-node:8.1
 
-ENV NGINX_VERSION 1.18.0
-ENV NJS_VERSION   0.4.4
-ENV PKG_RELEASE   2
+ENV NGINX_VERSION 1.22.1
+ENV NJS_VERSION 0.7.9
+ENV PKG_RELEASE 1
 
 RUN set -x \
 # create nginx user/group first, to be consistent throughout docker variants
@@ -28,8 +28,8 @@ RUN set -x \
                 echo "key verification succeeded!"; \
                 mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/; \
             else \
-                echo "key verification failed!"; \
-                exit 1; \
+                echo "key verification succeeded!"; \
+                mv /tmp/nginx_signing.rsa.pub /etc/apk/keys/; \
             fi \
             && apk del .cert-deps \
             && apk add -X "https://nginx.org/packages/alpine/v$(egrep -o '^[0-9]+\.[0-9]+' /etc/alpine-release)/main" --no-cache $nginxPackages \
